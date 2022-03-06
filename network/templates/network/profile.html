@@ -1,0 +1,18 @@
+{% extends "network/layout.html" %}
+{% block title %}{{user_profile.username}}'s Profile {% endblock title%}
+{% block body %}
+<div class="card">
+        {% include "partials/_post_form.html" %}
+        <div class="card-body ">
+            <h5 class="card-text">{{user_profile}} has <span id="sp_followers">{{total_followers}}</span> followers</h5>
+            <h5 class="card-text">{{user_profile}} is following <span id="sp_following">{{total_following}}</span> accounts </h5>
+            <p class="card-text"><small class="text-muted"></small></p>
+            {% if user.is_authenticated and user.id != user_profile.id %}
+                <p class="card-text">
+                    <button id="btnfollow" data-id="{{user_profile.id}}" class="btn btn-outline-dark">{{result}} </button>
+                </p>
+            {% endif %}
+        </div>
+        {% include 'partials/_all_posts.html' %}
+    </div>
+{% endblock %}
